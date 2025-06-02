@@ -13,8 +13,12 @@ window.addEventListener('load', function(event) {
 
         const form = e.target;
         const formData = new FormData(form);
+        var hvactitle = document.getElementById('hvactitle');
+        const alerrtdiv =  document.getElementById('alertdiv');
         const data = {};
 
+        hvactitle.classList.add('d-none');
+        alerrtdiv.classList.add('d-none');
         // Trigger Bootstrap 5 modal
         const modal = new bootstrap.Modal(document.getElementById('loaidngmodal'));
         modal.show();
@@ -57,7 +61,7 @@ window.addEventListener('load', function(event) {
        .then(res => res.json())
        .then(data => {
            if (data.success) {
-                var hvactitle = document.getElementById('hvactitle');
+
                 hvactitle.classList.remove('d-none');
                renderHVACCombinations(data.combinations);
                closeMyModal();
@@ -101,6 +105,8 @@ function showExtraInputs(e) {
 function renderHVACCombinations(combinations) {
     const container = document.querySelector('.havc-combinations-response');
     const template = document.getElementById('product-combination-template');
+    const alerrtdiv =  document.getElementById('alertdiv');
+
     container.innerHTML = '';
 
     if( combinations.length > 0 ) {
@@ -123,15 +129,8 @@ function renderHVACCombinations(combinations) {
             container.appendChild(comboGroup);
         });
     } else {
-        const comboGroup = document.createElement('div');
-        comboGroup.classList.add('combination-group');
 
-        const clone = template.cloneNode(true);
-        clone.classList.remove('d-none');
-
-        clone.querySelector('.name').textContent = 'NO Combinations available';
-console.log('nocombinations');
-        comboGroup.appendChild(clone);
+        alerrtdiv.classList.remove('d-none');
 
     }
 
