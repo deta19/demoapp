@@ -1,0 +1,13 @@
+body {
+    background-color: skyblue;
+}
+
+#sidebarMenu {
+    background: #212529 !important;
+    color: #fff;
+}
+
+#sidebarMenu a {
+    color: #fff;
+    text-decoration: none;
+}

@@ -1,0 +1,54 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+        <h1>Client submmited data</h1>
+        <div class="col-12">
+             <a class="btn btn-primary mt-1" href="{{ path('admin_combinations_export') }}">Export</a>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Number of rooms</th>
+                    <th scope="col">Cooling capacity</th>
+                    <th scope="col">Date added</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for clientCombination in clientCombinationsData %}
+               <tr>
+                   <td>{{ clientCombination.brand }}</td>
+                   <td>{{ clientCombination.numberOfRooms }}</td>
+                   <td>{{ clientCombination.coolingCapacity }}</td>
+                   <td>{{ clientCombination.indoorUnitType }}</td>
+                   <td>
+                   <a class="btn btn-primary mt-1" href="{{ path('app_admin_client_combinations_combination', { id: clientCombination.combinationId }) }}">See Combinations</a>
+                   <br/><a class="btn btn-primary mt-1" href="{{ path('app_admin_client_combination_delete', { id: clientCombination.combinationId }) }}">Delete</a>
+                   <br/><a class="btn btn-primary mt-1" href="{{ path('app_admin_client_combination_edit', { id: clientCombination.combinationId }) }}">Edit</a>
+                   </td>
+               </tr>
+           {% else %}
+               <tr>
+                   <td colspan="4">No products found.</td>
+               </tr>
+           {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

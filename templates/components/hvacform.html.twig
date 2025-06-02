@@ -1,0 +1,69 @@
+<h1>HVAC system combination</h1>
+
+<div class="col-12">
+    {{ form_start(form,  {'attr': {'id': 'hvacform_demo'}}) }}
+    <div class="mb-3 custom-wrapper-class">
+        {{ form_label(form.brand, null, { label_attr: { class: 'form-label' } }) }}
+        {{ form_errors(form.brand) }}
+        {{ form_widget(form.brand, { attr: { class: 'form-control' } }) }}
+    </div>
+    <div class="mb-3 custom-wrapper-class">
+        {{ form_label(form.Number_of_rooms, null, { label_attr: { class: 'form-label' } }) }}
+        {{ form_errors(form.Number_of_rooms) }}
+        {{ form_widget(form.Number_of_rooms, { attr: { class: 'form-control' } }) }}
+    </div>
+    <div id="grouptemplate" class="group d-none">
+        <h3 class="">Set up the HVAC unit:</h3>
+        <div class="mb-3 custom-wrapper-class hvasopt">
+            {{ form_label(form.cooling_capacity, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_errors(form.cooling_capacity) }}
+            {{ form_widget(form.cooling_capacity, { attr: { name: 'hvac_type_form[cooling_capacity][]', class: 'form-control' } }) }}
+        </div>
+        <div class="mb-3 custom-wrapper-class hvasopt">
+            {{ form_label(form.indoor_unit_type, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_errors(form.indoor_unit_type) }}
+            {{ form_widget(form.indoor_unit_type, { attr: { name: 'hvac_type_form[indoor_unit_type][]', class: 'form-control' } }) }}
+        </div>
+    </div>
+    <div id="aditions"></div>
+    <div class="mb-3 custom-wrapper-class">
+        <button class="btn btn-primary">Submit</button>
+    </div>
+    {{ form_end(form) }}
+</div>
+<h3 id="hvactitle" class="d-none">Possible combinations:</h3>
+<div class="havc-combinations-response">
+    <!-- Result combinations will appear here -->
+</div>
+
+<!-- Hidden template -->
+<div id="product-combination-template" class="product_combination_wrapper d-none">
+    <div class="name"></div>
+    <div class="cooling_capacity"></div>
+    <div class="type"></div>
+    <div class="brand"></div>
+</div>
+
+<div id="loaidngmodal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-1263.gif" class="img-fluid" alt="loading">
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+    .combination-group {
+        display: flex;
+        flex-flow: wrap;
+        border: 1px solid #fff;
+        padding: 15px;
+    }
+
+    .combination-group .product_combination_wrapper {
+        flex: 0 0 auto;
+        width: 25%
+
+    }
+</style>
